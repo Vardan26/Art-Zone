@@ -1,0 +1,622 @@
+<?php
+
+add_action(
+    'customize_register',
+    function ( $wp_customize ) {
+        $site_identity_settings = array(
+            'brand_logo_long'  => array(
+                'label' => __( 'Long Logo', 'art-zone-blank' ),
+                'type'  => 'image',
+            ),
+            'brand_logo_short' => array(
+                'label' => __( 'Short Logo', 'art-zone-blank' ),
+                'type'  => 'image',
+            ),
+        );
+
+        foreach ( $site_identity_settings as $setting_id => $config ) {
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => '',
+                    'sanitize_callback' => 'art_zone_blank_sanitize_media_value',
+                )
+            );
+
+            $wp_customize->add_control(
+                new WP_Customize_Image_Control(
+                    $wp_customize,
+                    'art_zone_blank_' . $setting_id,
+                    array(
+                        'label'   => $config['label'],
+                        'section' => 'title_tagline',
+                    )
+                )
+            );
+        }
+
+        $wp_customize->add_section(
+            'art_zone_blank_home',
+            array(
+                'title'    => __( 'Homepage', 'art-zone-blank' ),
+                'priority' => 30,
+            )
+        );
+
+        $wp_customize->add_section(
+            'art_zone_blank_about',
+            array(
+                'title'    => __( 'About Page', 'art-zone-blank' ),
+                'priority' => 31,
+            )
+        );
+
+        $wp_customize->add_section(
+            'art_zone_blank_portfolio',
+            array(
+                'title'    => __( 'Portfolio Page', 'art-zone-blank' ),
+                'priority' => 32,
+            )
+        );
+
+        $wp_customize->add_section(
+            'art_zone_blank_art_therapy',
+            array(
+                'title'    => __( 'Art Therapy Page', 'art-zone-blank' ),
+                'priority' => 33,
+            )
+        );
+
+        $wp_customize->add_section(
+            'art_zone_blank_contact',
+            array(
+                'title'    => __( 'Contact Page', 'art-zone-blank' ),
+                'priority' => 34,
+            )
+        );
+
+        $settings = array(
+            'hero_title'       => array(
+                'label'   => __( 'Hero Title', 'art-zone-blank' ),
+                'default' => __( 'Elias Vance', 'art-zone-blank' ),
+            ),
+            'hero_kicker'      => array(
+                'label'   => __( 'Hero Kicker', 'art-zone-blank' ),
+                'default' => __( 'Contemporary painter focusing on light and texture', 'art-zone-blank' ),
+            ),
+            'hero_button_text' => array(
+                'label'   => __( 'Hero Button Text', 'art-zone-blank' ),
+                'default' => __( 'View Portfolio', 'art-zone-blank' ),
+            ),
+            'hero_button_url'  => array(
+                'label'   => __( 'Hero Button URL', 'art-zone-blank' ),
+                'default' => '',
+            ),
+            'hero_image_url'   => array(
+                'label'   => __( 'Hero Image', 'art-zone-blank' ),
+                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuApq_b5Wl9XMfW2vDe5FXVEeDJB290fFMmKvao1aZ927tUUQTpolEnxssWE8AJapm2xDSM62w1HaKvjfi_uDX0PmP3ioNkcae5FIBv4w60qgxfkElaU0NrLO6Ap5qKRr3RF2hQlP8Xx10cegMA4PNG-Gdn2Ix5QX17ok69Wi6vK5ap3a8KyXNbfA0Wf-9zGaKU0BnOUOK2JZ1o0KNcDs8TT5WxlJSjlus9tsX8jkdNLlYRamC3u3giQxL5DCLM2fWHOaG07lLWDevU',
+                'type'    => 'image',
+            ),
+            'hero_video_url'      => array(
+                'label'   => __( 'Hero Background Video (MP4)', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'video',
+            ),
+            'hero_video_url_webm' => array(
+                'label'   => __( 'Hero Background Video (WebM)', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'video',
+            ),
+            'collection_title' => array(
+                'label'   => __( 'Collection Title', 'art-zone-blank' ),
+                'default' => __( 'Featured Collection', 'art-zone-blank' ),
+            ),
+            'collection_years' => array(
+                'label'   => __( 'Collection Years', 'art-zone-blank' ),
+                'default' => __( '2022 - 2024', 'art-zone-blank' ),
+            ),
+            'artist_name'      => array(
+                'label'   => __( 'Artist Name', 'art-zone-blank' ),
+                'default' => __( 'Elias Vance', 'art-zone-blank' ),
+            ),
+            'artist_label'     => array(
+                'label'   => __( 'Artist Eyebrow', 'art-zone-blank' ),
+                'default' => __( 'The Artist', 'art-zone-blank' ),
+            ),
+            'artist_bio'       => array(
+                'label'   => __( 'Artist Bio', 'art-zone-blank' ),
+                'default' => __( 'Based in a sun-drenched studio in the Hudson Valley, Elias Vance explores the boundary between physical texture and perceived atmosphere. His work is held in private collections across Europe and North America, celebrated for its quiet intensity and material use of light.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'artist_image_url' => array(
+                'label'   => __( 'Artist Image', 'art-zone-blank' ),
+                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuDP0SXCIu4ai7BJKVbdE7ksJceLBMhZ0FXTrOl9maIalnzaml4LBCYIvWvSuFFUMyozvtn_1jMZHEcDUIAq8PzMuhjGPOCgOF1ytWjPLv2nNJvLWh-NoQMTuyQbofFnv92X7GF_1i_Iu6ANv9EeZ9Osw8fuVuQFwxkPldrTRStOfar0-rwdMd8tp9h-zEfbZuI14S86Hd9vy1VHyG0aGrxw9fETNk0ll5d1yHYhop0GOgkcgsJFaAUufcpVZwiUzXVo4uGv2xrdLRg',
+                'type'    => 'image',
+            ),
+            'artist_link_text' => array(
+                'label'   => __( 'Artist Link Text', 'art-zone-blank' ),
+                'default' => __( 'Learn more about the journey', 'art-zone-blank' ),
+            ),
+            'artist_link_url'  => array(
+                'label'   => __( 'Artist Link URL', 'art-zone-blank' ),
+                'default' => '',
+            ),
+            'home_video_label' => array(
+                'label'   => __( 'Home Video Eyebrow', 'art-zone-blank' ),
+                'default' => __( 'Studio Motion', 'art-zone-blank' ),
+            ),
+            'home_video_title' => array(
+                'label'   => __( 'Home Video Title', 'art-zone-blank' ),
+                'default' => __( 'A moving glimpse into the studio atmosphere.', 'art-zone-blank' ),
+            ),
+            'home_video_text'  => array(
+                'label'   => __( 'Home Video Text', 'art-zone-blank' ),
+                'default' => __( 'A quiet moving image can hold the same material presence as a still surface. Use this section for process, atmosphere, or a fragment of the artist at work.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'home_video_link_text' => array(
+                'label'   => __( 'Home Video Link Text', 'art-zone-blank' ),
+                'default' => __( 'Discover the studio', 'art-zone-blank' ),
+            ),
+            'home_video_link_url'  => array(
+                'label'   => __( 'Home Video Link URL', 'art-zone-blank' ),
+                'default' => '',
+            ),
+            'home_video_url'      => array(
+                'label'   => __( 'Home Studio Video (MP4)', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'video',
+            ),
+            'home_video_url_webm' => array(
+                'label'   => __( 'Home Studio Video (WebM)', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'video',
+            ),
+            'cta_title'        => array(
+                'label'   => __( 'CTA Title', 'art-zone-blank' ),
+                'default' => __( 'Bring a vision to life.', 'art-zone-blank' ),
+            ),
+            'cta_text'         => array(
+                'label'   => __( 'CTA Text', 'art-zone-blank' ),
+                'default' => __( 'Elias accepts a limited number of private and commercial commissions each year. Start a conversation about your custom piece.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'cta_button_text'  => array(
+                'label'   => __( 'CTA Button Text', 'art-zone-blank' ),
+                'default' => __( 'Request Commission', 'art-zone-blank' ),
+            ),
+            'cta_button_url'   => array(
+                'label'   => __( 'CTA Button URL', 'art-zone-blank' ),
+                'default' => '',
+            ),
+            'footer_location'  => array(
+                'label'   => __( 'Footer Location', 'art-zone-blank' ),
+                'default' => __( 'Studio - Hudson Valley, NY', 'art-zone-blank' ),
+            ),
+        );
+
+        foreach ( $settings as $setting_id => $config ) {
+            $setting_type = isset( $config['type'] ) ? $config['type'] : 'text';
+            $sanitize_cb  = 'textarea' === $setting_type ? 'sanitize_textarea_field' : 'sanitize_text_field';
+
+            if ( in_array( $setting_type, array( 'image', 'video' ), true ) ) {
+                $sanitize_cb = 'art_zone_blank_sanitize_media_value';
+            } elseif ( str_ends_with( $setting_id, '_url' ) ) {
+                $sanitize_cb = 'esc_url_raw';
+            }
+
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => $config['default'],
+                    'sanitize_callback' => $sanitize_cb,
+                )
+            );
+
+            if ( 'image' === $setting_type ) {
+                $wp_customize->add_control(
+                    new WP_Customize_Image_Control(
+                        $wp_customize,
+                        'art_zone_blank_' . $setting_id,
+                        array(
+                            'label'   => $config['label'],
+                            'section' => 'art_zone_blank_home',
+                        )
+                    )
+                );
+                continue;
+            }
+
+            if ( 'video' === $setting_type ) {
+                $wp_customize->add_control(
+                    new WP_Customize_Media_Control(
+                        $wp_customize,
+                        'art_zone_blank_' . $setting_id,
+                        array(
+                            'label'     => $config['label'],
+                            'section'   => 'art_zone_blank_home',
+                            'mime_type' => 'video',
+                        )
+                    )
+                );
+                continue;
+            }
+
+            $wp_customize->add_control(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'label'   => $config['label'],
+                    'section' => 'art_zone_blank_home',
+                    'type'    => 'textarea' === $setting_type ? 'textarea' : 'text',
+                )
+            );
+        }
+
+        $about_settings = array(
+            'about_eyebrow'           => array(
+                'label'   => __( 'Hero Eyebrow', 'art-zone-blank' ),
+                'default' => __( 'The Artist', 'art-zone-blank' ),
+            ),
+            'about_title'             => array(
+                'label'   => __( 'Hero Title', 'art-zone-blank' ),
+                'default' => __( 'Wild nature, stone paint, and a life rooted in place.', 'art-zone-blank' ),
+            ),
+            'about_intro_paragraph_1' => array(
+                'label'   => __( 'Hero Paragraph 1', 'art-zone-blank' ),
+                'default' => __( 'Hayk Shahbazyan lives in Yeghegnadzor, Armenia. After graduating from Terlemezyan Painting College, he returned to his hometown and began building his professional artistic path there.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'about_intro_paragraph_2' => array(
+                'label'   => __( 'Hero Paragraph 2', 'art-zone-blank' ),
+                'default' => __( 'His work is shaped by a personal technique using stone paints made through his own process. The wild and breathtaking beauty of nature, in all its changing forms, remains a constant presence throughout his paintings.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'about_intro_paragraph_3' => array(
+                'label'   => __( 'Hero Paragraph 3', 'art-zone-blank' ),
+                'default' => __( 'His work is shaped by a personal technique using stone paints made through his own process. The wild and breathtaking beauty of nature, in all its changing forms, remains a constant presence throughout his paintings.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'about_philosophy_title'  => array(
+                'label'   => __( 'Philosophy Title', 'art-zone-blank' ),
+                'default' => __( 'The Philosophy', 'art-zone-blank' ),
+            ),
+            'about_philosophy_quote'  => array(
+                'label'   => __( 'Philosophy Quote', 'art-zone-blank' ),
+                'default' => __( '"I work with stone paints made through my own unique technology, searching for a language that can hold the power of nature on canvas."', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'about_detail_caption'    => array(
+                'label'   => __( 'Detail Caption', 'art-zone-blank' ),
+                'default' => __( 'Studio Detail: Stone Paint Process and Surface Work', 'art-zone-blank' ),
+            ),
+            'about_video_eyebrow'     => array(
+                'label'   => __( 'Video Section Eyebrow', 'art-zone-blank' ),
+                'default' => __( 'Studio Videos', 'art-zone-blank' ),
+            ),
+            'about_video_title'       => array(
+                'label'   => __( 'Video Section Title', 'art-zone-blank' ),
+                'default' => __( 'Watch the studio process unfold.', 'art-zone-blank' ),
+            ),
+            'about_video_description' => array(
+                'label'   => __( 'Video Section Description', 'art-zone-blank' ),
+                'default' => __( 'A selection of video blocks can be used here to show painting sessions, material preparation, or short studio fragments.', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'about_portrait_image_url' => array(
+                'label'   => __( 'Portrait Image', 'art-zone-blank' ),
+                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMz8rttBQTAz-Qu50Kd6EMJGdz4BF2q7uSQKoKmWAw0AcSyqwfEO5S7hN1P8kTz2OSESRTs7we05xCWcG82YSF8fRRX3v4cFiQVl6vXNu1ROBzbzYZGMmJWoRTzLKqNGckqkq9GffKWiXjQ6PCt7BDPAClxTO40jodtzmFbdHsUN0ugZJugxKwa2XoH6KwfU4Bow96ixqpjFaKTQQitgYbbdcsFix6YpzQsnzVuvWskFJ4dWR3NbkZ00_7fiEWFvx955eYKKcMkUs',
+                'type'    => 'image',
+            ),
+            'about_detail_image_url' => array(
+                'label'   => __( 'Detail Image', 'art-zone-blank' ),
+                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBj7dlP0cvdY6Pc-YILi0Ra4oaOt1Q9SVVYRf_Z3MOYcsRmjzUxutcAbofADKjetO1F7MEDokRzE5i7KFVDcl5NS3ANcuBsjcTI0FrDHr69vSJ69EkitIN33vYHxmf_4C1v22UrSvXwDIDaSigYwf4tp9weDagVGeliin6IwqMyA4-CmGZCgHxUddi9yHnUbMlol0BKQCbyPIShL7pkV99qY093wweRUHKcNUnvQunk2nUcVfemIvdzly98Ur9CwQ_O9LUES3hnwbA',
+                'type'    => 'image',
+            ),
+            'about_feature_video_url' => array(
+                'label'   => __( 'Feature Video', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'video',
+            ),
+        );
+
+        foreach ( $about_settings as $setting_id => $config ) {
+            $setting_type = isset( $config['type'] ) ? $config['type'] : 'text';
+            $sanitize_cb  = 'textarea' === $setting_type ? 'sanitize_textarea_field' : 'sanitize_text_field';
+
+            if ( in_array( $setting_type, array( 'url', 'image', 'video' ), true ) ) {
+                $sanitize_cb = in_array( $setting_type, array( 'image', 'video' ), true ) ? 'art_zone_blank_sanitize_media_value' : 'esc_url_raw';
+            } elseif ( str_ends_with( $setting_id, '_url' ) ) {
+                $sanitize_cb = 'esc_url_raw';
+            }
+
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => $config['default'],
+                    'sanitize_callback' => $sanitize_cb,
+                )
+            );
+
+            if ( 'image' === $setting_type ) {
+                $wp_customize->add_control(
+                    new WP_Customize_Image_Control(
+                        $wp_customize,
+                        'art_zone_blank_' . $setting_id,
+                        array(
+                            'label'   => $config['label'],
+                            'section' => 'art_zone_blank_about',
+                        )
+                    )
+                );
+                continue;
+            }
+
+            if ( 'video' === $setting_type ) {
+                $section = 'art_zone_blank_about';
+                $label   = $config['label'];
+
+                if ( 'about_feature_video_url' === $setting_id ) {
+                    $section = 'art_zone_blank_home';
+                    $label   = __( 'CTA Background Video', 'art-zone-blank' );
+                }
+
+                $wp_customize->add_control(
+                    new WP_Customize_Media_Control(
+                        $wp_customize,
+                        'art_zone_blank_' . $setting_id,
+                        array(
+                            'label'     => $label,
+                            'section'   => $section,
+                            'mime_type' => 'video',
+                        )
+                    )
+                );
+                continue;
+            }
+
+            $wp_customize->add_control(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'label'   => $config['label'],
+                    'section' => 'art_zone_blank_about',
+                    'type'    => 'textarea' === $setting_type ? 'textarea' : 'text',
+                )
+            );
+        }
+
+        $portfolio_settings = array(
+            'portfolio_title'          => array(
+                'label'   => __( 'Portfolio Heading', 'art-zone-blank' ),
+                'default' => __( 'Works', 'art-zone-blank' ),
+            ),
+            'portfolio_all_label'      => array(
+                'label'   => __( 'All Filter Label', 'art-zone-blank' ),
+                'default' => __( 'All', 'art-zone-blank' ),
+            ),
+            'portfolio_count_template' => array(
+                'label'   => __( 'Count Text Template', 'art-zone-blank' ),
+                'default' => __( 'Showing %1$s of %2$s works', 'art-zone-blank' ),
+            ),
+        );
+
+        foreach ( $portfolio_settings as $setting_id => $config ) {
+            $setting_type = isset( $config['type'] ) ? $config['type'] : 'text';
+            $sanitize_cb  = 'textarea' === $setting_type ? 'sanitize_textarea_field' : 'sanitize_text_field';
+
+            if ( 'url' === $setting_type || str_ends_with( $setting_id, '_url' ) ) {
+                $sanitize_cb = 'esc_url_raw';
+            }
+
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => $config['default'],
+                    'sanitize_callback' => $sanitize_cb,
+                )
+            );
+
+            $wp_customize->add_control(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'label'   => $config['label'],
+                    'section' => 'art_zone_blank_portfolio',
+                    'type'    => 'textarea' === $setting_type ? 'textarea' : ( 'url' === $setting_type ? 'url' : 'text' ),
+                )
+            );
+        }
+
+        $art_therapy_settings = array(
+            'art_therapy_title' => array(
+                'label'   => __( 'Hero Heading', 'art-zone-blank' ),
+                'default' => __( 'Art Therapy', 'art-zone-blank' ),
+            ),
+        );
+
+        foreach ( $art_therapy_settings as $setting_id => $config ) {
+            $setting_type = isset( $config['type'] ) ? $config['type'] : 'text';
+            $sanitize_cb  = 'textarea' === $setting_type ? 'sanitize_textarea_field' : 'sanitize_text_field';
+
+            if ( 'url' === $setting_type || str_ends_with( $setting_id, '_url' ) ) {
+                $sanitize_cb = 'esc_url_raw';
+            }
+
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => $config['default'],
+                    'sanitize_callback' => $sanitize_cb,
+                )
+            );
+
+            $wp_customize->add_control(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'label'   => $config['label'],
+                    'section' => 'art_zone_blank_art_therapy',
+                    'type'    => 'textarea' === $setting_type ? 'textarea' : ( 'url' === $setting_type ? 'url' : 'text' ),
+                )
+            );
+        }
+
+        $wp_customize->add_setting(
+            'art_zone_blank_art_therapy_hero_video_url',
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'art_zone_blank_sanitize_media_value',
+            )
+        );
+
+        $wp_customize->add_control(
+            new WP_Customize_Media_Control(
+                $wp_customize,
+                'art_zone_blank_art_therapy_hero_video_url',
+                array(
+                    'label'     => __( 'Hero Video', 'art-zone-blank' ),
+                    'section'   => 'art_zone_blank_art_therapy',
+                    'mime_type' => 'video',
+                )
+            )
+        );
+
+        $wp_customize->add_setting(
+            'art_zone_blank_art_therapy_audio_url',
+            array(
+                'default'           => '',
+                'sanitize_callback' => 'art_zone_blank_sanitize_media_value',
+            )
+        );
+
+        $wp_customize->add_control(
+            new WP_Customize_Media_Control(
+                $wp_customize,
+                'art_zone_blank_art_therapy_audio_url',
+                array(
+                    'label'     => __( 'Background Audio', 'art-zone-blank' ),
+                    'section'   => 'art_zone_blank_art_therapy',
+                    'mime_type' => 'audio',
+                )
+            )
+        );
+
+        $contact_settings = array(
+            'contact_hero_image_url'       => array(
+                'label'   => __( 'Hero Image', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'image',
+            ),
+            'contact_hero_kicker'          => array(
+                'label'   => __( 'Hero Kicker', 'art-zone-blank' ),
+                'default' => __( 'Let’s talk about your next project.', 'art-zone-blank' ),
+            ),
+            'contact_phone'                => array(
+                'label'   => __( 'Phone', 'art-zone-blank' ),
+                'default' => __( '+374 00 000000', 'art-zone-blank' ),
+            ),
+            'contact_email'                => array(
+                'label'   => __( 'Email', 'art-zone-blank' ),
+                'default' => __( 'studio@example.com', 'art-zone-blank' ),
+            ),
+            'contact_address_1_label'      => array(
+                'label'   => __( 'Address 1 Label', 'art-zone-blank' ),
+                'default' => __( 'Studio One', 'art-zone-blank' ),
+            ),
+            'contact_address_1_text'       => array(
+                'label'   => __( 'Address 1', 'art-zone-blank' ),
+                'default' => __( 'Yeghegnadzor, Vayots Dzor, Armenia', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'contact_address_1_lat'        => array(
+                'label'   => __( 'Address 1 Latitude', 'art-zone-blank' ),
+                'default' => '39.7639',
+            ),
+            'contact_address_1_lng'        => array(
+                'label'   => __( 'Address 1 Longitude', 'art-zone-blank' ),
+                'default' => '45.3324',
+            ),
+            'contact_address_2_label'      => array(
+                'label'   => __( 'Address 2 Label', 'art-zone-blank' ),
+                'default' => __( 'Studio Two', 'art-zone-blank' ),
+            ),
+            'contact_address_2_text'       => array(
+                'label'   => __( 'Address 2', 'art-zone-blank' ),
+                'default' => __( 'Yerevan, Armenia', 'art-zone-blank' ),
+                'type'    => 'textarea',
+            ),
+            'contact_address_2_lat'        => array(
+                'label'   => __( 'Address 2 Latitude', 'art-zone-blank' ),
+                'default' => '40.1792',
+            ),
+            'contact_address_2_lng'        => array(
+                'label'   => __( 'Address 2 Longitude', 'art-zone-blank' ),
+                'default' => '44.4991',
+            ),
+            'contact_map_url'              => array(
+                'label'   => __( 'Combined Map Embed URL', 'art-zone-blank' ),
+                'default' => 'https://maps.google.com/maps?q=Armenia&t=&z=7&ie=UTF8&iwloc=&output=embed',
+                'type'    => 'url',
+            ),
+            'contact_social_instagram_url' => array(
+                'label'   => __( 'Instagram URL', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'url',
+            ),
+            'contact_social_facebook_url'  => array(
+                'label'   => __( 'Facebook URL', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'url',
+            ),
+            'contact_social_youtube_url'   => array(
+                'label'   => __( 'YouTube URL', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'url',
+            ),
+            'contact_social_whatsapp_url'  => array(
+                'label'   => __( 'WhatsApp URL', 'art-zone-blank' ),
+                'default' => '',
+                'type'    => 'url',
+            ),
+        );
+
+        foreach ( $contact_settings as $setting_id => $config ) {
+            $setting_type = isset( $config['type'] ) ? $config['type'] : 'text';
+            $sanitize_cb  = 'textarea' === $setting_type ? 'sanitize_textarea_field' : 'sanitize_text_field';
+
+            if ( 'image' === $setting_type ) {
+                $sanitize_cb = 'art_zone_blank_sanitize_media_value';
+            } elseif ( 'url' === $setting_type || str_ends_with( $setting_id, '_url' ) ) {
+                $sanitize_cb = 'esc_url_raw';
+            }
+
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => $config['default'],
+                    'sanitize_callback' => $sanitize_cb,
+                )
+            );
+
+            if ( 'image' === $setting_type ) {
+                $wp_customize->add_control(
+                    new WP_Customize_Image_Control(
+                        $wp_customize,
+                        'art_zone_blank_' . $setting_id,
+                        array(
+                            'label'   => $config['label'],
+                            'section' => 'art_zone_blank_contact',
+                        )
+                    )
+                );
+                continue;
+            }
+
+            $wp_customize->add_control(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'label'   => $config['label'],
+                    'section' => 'art_zone_blank_contact',
+                    'type'    => 'textarea' === $setting_type ? 'textarea' : ( 'url' === $setting_type ? 'url' : 'text' ),
+                )
+            );
+        }
+    }
+);

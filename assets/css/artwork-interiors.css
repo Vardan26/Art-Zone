@@ -1,0 +1,290 @@
+@property --interior-bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e8e1d5;
+}
+
+.artwork-interior-mockups {
+  margin-bottom: clamp(48px, 8vw, 96px);
+}
+
+.artwork-interior-mockups__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(24px, 4vw, 42px);
+}
+
+.artwork-interior-mockups__head .artwork-detail__eyebrow {
+  margin-bottom: 12px;
+}
+
+.artwork-interior-mockups__title {
+  margin: 0;
+  font-family: var(--az-font-display);
+  font-size: clamp(1.8rem, 4vw, 4rem);
+  font-weight: 300;
+  line-height: var(--type-title-line);
+  letter-spacing: -0.05em;
+}
+
+.artwork-interior-mockups__color[hidden] {
+  display: none;
+}
+
+.artwork-interior-mockups__color {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--az-font-sans);
+  font-size: var(--type-meta-size);
+  font-weight: 600;
+  letter-spacing: var(--type-meta-track);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--az-color-muted);
+}
+
+.artwork-interior-mockups__color input {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(26, 28, 28, 0.2);
+  background: transparent;
+  cursor: pointer;
+}
+
+.artwork-interior-mockups__layout {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 25px);
+  align-items: center;
+  overflow: hidden;
+}
+
+.interior-mockup-card {
+  display: block;
+  min-width: 0;
+}
+
+.interior-mockup-card--main {
+  margin: 0 auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  background: var(--az-color-bg-soft);
+}
+
+.interior-mockup {
+  position: relative;
+  display: block;
+  width: min(100%, calc(70vh * (var(--scene-width) / var(--scene-height))));
+  max-width: 100%;
+  max-height: 70vh;
+  height: auto;
+  aspect-ratio: calc(var(--scene-width) / var(--scene-height));
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 26px 42px rgba(0, 0, 0, 0.14);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.interior-mockup.is-switching {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.interior-mockup__wall-color,
+.interior-choice__wall-color {
+  position: absolute;
+  inset: 0;
+  background: var(--interior-bg, #e8e1d5);
+}
+
+.interior-mockup__wall-color {
+  z-index: 0;
+  transition: --interior-bg 0.4s ease;
+}
+
+.interior-mockup__bg {
+  position: relative;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.interior-mockup__slot {
+  position: absolute;
+  left: calc(var(--slot-x) * 1%);
+  top: calc(var(--slot-y) * 1%);
+  width: calc(var(--slot-width) * 1%);
+  height: calc(var(--slot-height) * 1%);
+  display: flex;
+  align-items: var(--slot-align-y, center);
+  justify-content: var(--slot-align-x, center);
+  z-index: 1;
+
+  /* background-color: blueviolet; */
+}
+
+.withFrontArt{
+  z-index: 2;
+}
+
+.interior-mockup__artwork {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: calc((var(--artwork-render-width) / var(--slot-width)) * 100%);
+  height: calc((var(--artwork-render-height) / var(--slot-height)) * 100%);
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.interior-mockup-card__title {
+  margin: 14px 0 0;
+  font-family: var(--az-font-sans);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--az-color-muted);
+}
+
+.artwork-interior-mockups__choices {
+  display: flex;
+  gap: 15px;
+  overflow: auto;
+  align-self: flex-start;
+  width: 100%;
+  padding: 10px;
+}
+
+.interior-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 180px;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid rgba(26, 28, 28, 0.13);
+  background: rgba(255, 255, 255, 0.46);
+  color: var(--az-color-text);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--az-transition-ui), background var(--az-transition-ui), transform var(--az-transition-ui);
+}
+
+.interior-choice:hover,
+.interior-choice.is-active {
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.15);
+
+}
+
+.interior-choice:hover {
+  transform: translateY(-1px);
+}
+
+.interior-choice__thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--interior-bg, #e8e1d5);
+}
+
+.interior-choice__wall-color {
+  opacity: 0.72;
+}
+
+.interior-choice__thumb img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.82;
+}
+
+.interior-choice__title {
+  min-width: 0;
+  font-family: var(--az-font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+/* Frame switch transition */
+.interior-mockup .artwork-frame {
+  transition: opacity 0.25s ease;
+}
+
+.interior-mockup .artwork-frame.is-switching {
+  opacity: 0;
+}
+
+/* When framed, the wrapper carries the shadow */
+.artwork-frame.is-framed .interior-mockup__artwork {
+  box-shadow: none;
+}
+
+/* drop-shadow: follows painted shape — applied to PNGs and "Not Applicable" artworks */
+.artwork-frame--drop-shadow .interior-mockup__artwork {
+  box-shadow: none;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* When PNG is framed, frame wrapper carries the shadow */
+.artwork-frame--drop-shadow.is-framed .interior-mockup__artwork {
+  filter: none;
+}
+
+@media (max-width: 700px) {
+  .artwork-interior-mockups__head {
+    display: block;
+  }
+
+  .artwork-interior-mockups__color {
+    margin-top: 18px;
+  }
+
+  .artwork-interior-mockups__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .artwork-interior-mockups__choices {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 6px;
+    scroll-snap-type: x proximity;
+  }
+
+  .interior-choice {
+    width: 150px;
+  }
+
+  .interior-choice__thumb {
+    width: 100px;
+  }
+}

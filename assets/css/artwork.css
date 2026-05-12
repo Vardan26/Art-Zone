@@ -1,0 +1,253 @@
+.artwork-detail {
+  padding-top: var(--space-hero-top);
+}
+
+.artwork-detail__hero {
+  padding-bottom: var(--space-section);
+}
+
+.artwork-detail__grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.3fr) minmax(300px, 0.7fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.artwork-detail__visual {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.artwork-detail__frame {
+  position: relative;
+  width: min(100%, 740px);
+  padding: clamp(12px, 3vw, 52px);
+  background: rgba(243, 243, 243, 0.72);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 70vh;
+}
+
+.artwork-detail__frame .artwork-frame {
+  z-index: 10;
+  box-shadow: none;
+  width: auto;
+}
+
+.artwork-detail__frame .artwork-frame.is-framed {
+  box-shadow: 0 26px 42px rgba(0, 0, 0, 0.14);
+  overflow: visible;
+}
+
+.artwork-detail__image {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(70vh - 2 * clamp(10px, 2vw, 20px));
+  box-shadow: 0 26px 42px rgba(0, 0, 0, 0.14);
+}
+
+.is-framed .artwork-detail__image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(70vh - 2 * clamp(12px, 3vw, 52px));
+  box-shadow: none;
+}
+
+.artwork-detail__shadow {
+  position: absolute;
+  background: rgba(226, 226, 226, 0.6);
+  z-index: 1;
+  display: block;
+}
+
+.artwork-detail__shadow--large {
+  right: -18px;
+  bottom: -14px;
+  width: 40%;
+  height: 30%;
+}
+
+.artwork-detail__shadow--small {
+  left: -18px;
+  top: -18px;
+  width: 34%;
+  height: 22%;
+  opacity: 0.35;
+}
+
+.artwork-detail__sidebar {
+  position: sticky;
+  top: 140px;
+}
+
+.artwork-detail__stack {
+  display: grid;
+  gap: 34px;
+}
+
+.artwork-detail__title {
+  max-width: 12ch;
+}
+
+.artwork-detail__headline-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--az-color-meta);
+  font-size: var(--type-meta-size);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.artwork-detail__headline-line {
+  width: 32px;
+  height: 1px;
+  background: var(--az-color-line);
+}
+
+.artwork-detail__specs {
+  display: grid;
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(198, 198, 198, 0.2);
+}
+
+.artwork-detail__spec {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: baseline;
+}
+
+.artwork-detail__spec span,
+.artwork-detail__related-meta p {
+  color: var(--az-color-meta);
+  font-size: var(--type-meta-size);
+  letter-spacing: var(--type-meta-track);
+  text-transform: uppercase;
+}
+
+.artwork-detail__spec strong {
+  max-width: 58%;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.artwork-detail__quote {
+  margin: 0 0 20px;
+  font-family: var(--az-font-display);
+  font-size: 1.55rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.artwork-detail__description {
+  color: var(--az-color-muted);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+}
+
+.artwork-detail__description p { margin: 0; }
+
+.artwork-detail__button {
+  display: inline-flex;
+  width: 100%;
+  min-height: 60px;
+  align-items: center;
+  justify-content: center;
+  background: var(--az-color-dark);
+  color: var(--az-color-light);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.artwork-detail__utility {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.artwork-detail__utility button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--az-color-meta);
+  font-size: var(--type-meta-size);
+  font-weight: 500;
+  letter-spacing: var(--type-meta-track);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.artwork-detail__provenance {
+  padding: 108px 0;
+  background: var(--az-color-bg-soft);
+}
+
+.artwork-detail__provenance-shell { max-width: 980px; }
+
+.artwork-detail__provenance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+}
+
+.artwork-detail__subhead,
+.artwork-detail__related-title {
+  max-width: 14ch;
+}
+
+.artwork-detail__provenance-copy {
+  margin: 0;
+  color: var(--az-color-muted);
+  line-height: 1.8;
+}
+
+.artwork-detail__related {
+  padding: 110px 0 72px;
+}
+
+.artwork-detail__related-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 54px;
+}
+
+.artwork-detail__related-link {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--az-color-line);
+  color: var(--az-color-muted);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+
+/* drop-shadow: follows painted shape — applied to PNGs and "Not Applicable" artworks */
+.artwork-frame--drop-shadow .artwork-detail__image {
+  box-shadow: none;
+  filter: drop-shadow(0 26px 42px rgba(0, 0, 0, 0.18));
+}
+
+/* When framed, the frame wrapper carries the shadow — remove it from the image */
+.artwork-frame--drop-shadow.is-framed .artwork-detail__image {
+  filter: none;
+}
+
+/* Decorative shadow divs are never appropriate for transparent PNGs */
+.artwork-detail__frame:has(.artwork-frame--drop-shadow) .artwork-detail__shadow {
+  display: none;
+}

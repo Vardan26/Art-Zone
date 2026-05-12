@@ -1,0 +1,292 @@
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  backdrop-filter: blur(16px);
+  background: var(--az-surface-muted);
+  border-bottom: 1px solid rgba(18, 18, 18, 0.06);
+}
+
+.site-header--home-overlay {
+  background: linear-gradient(180deg, rgba(12, 12, 12, 0.38) 0%, rgba(12, 12, 12, 0.1) 72%, rgba(12, 12, 12, 0) 100%);
+  backdrop-filter: blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  transition:
+    background-color 260ms ease-out,
+    backdrop-filter 260ms ease-out,
+    border-color 260ms ease-out;
+}
+
+.site-header--home-overlay .site-header__brand a,
+.site-header--home-overlay .site-menu a,
+.site-header--home-overlay .site-header__menu-toggle {
+  color: #fff;
+  transition: color 260ms ease-out;
+}
+
+.site-header--home-overlay .site-header__brand-image {
+  filter: invert(1);
+  transition: filter 260ms ease-out;
+}
+
+.site-header--home-overlay.is-scrolled {
+  backdrop-filter: blur(16px);
+  background: var(--az-surface-muted);
+  border-bottom-color: rgba(18, 18, 18, 0.06);
+}
+
+.site-header--home-overlay.is-scrolled .site-header__brand a,
+.site-header--home-overlay.is-scrolled .site-menu a {
+  color: var(--az-color-muted);
+}
+
+.site-header--home-overlay.is-scrolled .site-header__brand-image {
+  filter: none;
+}
+
+.site-header--home-overlay.is-scrolled .site-header__menu-toggle {
+  color: var(--az-color-text);
+}
+
+.site-header__inner,
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.site-header__inner {
+  min-height: var(--az-header-height);
+}
+
+.site-header__brand,
+.site-footer__brand {
+  margin: 0;
+  font-size: 1.78rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.site-header__brand {
+  font-family: "Still Time", var(--az-font-display), serif;
+}
+
+.site-header__brand a {
+  font-family: "Still Time", var(--az-font-display), serif;
+  line-height: 1;
+}
+
+.site-header__brand a,
+.site-footer__brand a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-header__brand-image,
+.site-footer__brand-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.site-header__brand-image--long {
+  max-width: 150px;
+  max-height: 52px;
+}
+
+.site-footer__brand-image--short {
+  max-height: 34px;
+}
+
+.site-footer__brand {
+  font-family: "Still Time", var(--az-font-display), serif;;
+}
+
+.site-menu,
+.footer-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.site-menu a,
+.footer-menu a {
+  font-family: var(--az-font-display);
+  font-size: calc(var(--type-nav-size) + 0.02rem);
+  font-weight: 400;
+  letter-spacing: calc(var(--type-nav-track) - 0.01em);
+  text-transform: uppercase;
+  color: rgba(82, 77, 72, 0.94);
+  transition:
+    color var(--az-transition-ui),
+    opacity var(--az-transition-ui),
+    transform var(--az-transition-ui);
+}
+
+.footer-menu a {
+  font-size: var(--type-nav-size);
+  letter-spacing: calc(var(--type-nav-track) - 0.02em);
+  color: rgba(96, 90, 84, 0.84);
+}
+
+.site-menu a:hover,
+.site-menu a:focus-visible,
+.footer-menu a:hover,
+.footer-menu a:focus-visible {
+  color: var(--az-color-dark);
+  transform: translateY(-1px);
+}
+
+.site-header__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 18px;
+  border-left: 1px solid rgba(18, 18, 18, 0.1);
+}
+
+.site-header--home-overlay .site-header__lang {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.site-header__lang-link {
+  color: rgba(82, 77, 72, 0.74);
+  font-family: var(--az-font-display);
+  font-size: var(--type-meta-size);
+  font-weight: 500;
+  letter-spacing: var(--type-meta-track);
+  text-transform: uppercase;
+  transition:
+    color var(--az-transition-ui),
+    opacity var(--az-transition-ui);
+}
+
+.site-header__lang-link.is-current {
+  color: var(--az-color-dark);
+}
+
+.site-header--home-overlay .site-header__lang-link {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-header--home-overlay .site-header__lang-link.is-current {
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.site-header--home-overlay.is-scrolled .site-header__lang {
+  border-left-color: rgba(18, 18, 18, 0.1);
+}
+
+.site-header--home-overlay.is-scrolled .site-header__lang-link {
+  color: rgba(82, 77, 72, 0.74);
+}
+
+.site-header--home-overlay.is-scrolled .site-header__lang-link.is-current {
+  color: var(--az-color-dark);
+}
+
+.site-header__menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--az-color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 22;
+  border-radius: var(--az-radius-pill);
+  transition:
+    background-color var(--az-transition-ui),
+    color var(--az-transition-ui);
+}
+
+.site-header__menu-icon,
+.site-header__menu-icon::before,
+.site-header__menu-icon::after {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+.site-header__menu-icon {
+  position: relative;
+}
+
+.site-header__menu-icon::before,
+.site-header__menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.site-header__menu-icon::before {
+  top: -7px;
+}
+
+.site-header__menu-icon::after {
+  top: 7px;
+}
+
+.site-header.is-menu-open .site-header__menu-icon {
+  background: transparent;
+}
+
+.site-header.is-menu-open .site-header__menu-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header.is-menu-open .site-header__menu-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.site-footer {
+  padding: calc(var(--space-section-tight) + var(--space-copy)) 0;
+  background: linear-gradient(180deg, #d9d9d9 0%, #d2d2d2 100%);
+}
+
+.site-footer__copyright,
+.site-footer__location {
+  margin: var(--space-meta) 0 0;
+  color: rgba(84, 79, 74, 0.92);
+  font-size: var(--type-meta-size);
+  letter-spacing: var(--type-meta-track);
+  text-transform: uppercase;
+}
+
+.site-footer__brand {
+  font-style: italic;
+  font-size: 1.06rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.site-footer__brand-block,
+.site-footer__nav {
+  display: grid;
+  gap: var(--space-meta);
+}
+
+.site-footer__location {
+  text-align: right;
+}

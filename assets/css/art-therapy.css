@@ -1,0 +1,174 @@
+.art-therapy-page {
+  padding: var(--space-hero-top) 0 var(--space-section);
+  background: var(--az-color-bg);
+}
+
+.art-therapy-page__hero {
+  margin-bottom: var(--space-section);
+  height: calc(100vh - var(--space-hero-top));
+  max-height: calc(100vh - var(--space-hero-top));
+  overflow: hidden;
+}
+
+.art-therapy-page__hero-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.78fr);
+  height: inherit;
+  align-items: stretch;
+}
+
+.art-therapy-page__hero-media {
+  position: relative;
+  height: 100%;
+}
+
+.art-therapy-page__hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.08) 0%, rgba(10, 10, 10, 0.2) 100%),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.06) 0%, rgba(10, 10, 10, 0) 48%);
+}
+
+.art-therapy-page__hero-media video {
+  object-position: 0 75%;
+}
+
+.art-therapy-page__audio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.art-therapy-page__audio-toggle {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  z-index: 3;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(18, 18, 18, 0.44);
+  color: var(--az-color-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.art-therapy-page__audio-toggle-icon {
+  font-size: 1.16rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-therapy-page__hero-panel {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  padding: clamp(30px, 4vw, 58px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03)),
+    linear-gradient(180deg, #e7ddd4 0%, #e2d7cb 100%);
+}
+
+.art-therapy-page__hero-copy {
+  display: grid;
+  align-content: start;
+  gap: var(--space-block);
+  width: min(33rem, 100%);
+}
+
+.art-therapy-page__title {
+  max-width: 12ch;
+  margin-bottom: 0;
+}
+
+.art-therapy-page__intro {
+  width: min(34rem, 100%);
+  color: rgba(57, 58, 58, 0.9);
+  font-size: var(--type-lead-size);
+  line-height: var(--type-lead-line);
+}
+
+.art-therapy-page__intro > *:first-child {
+  margin-top: 0;
+}
+
+.art-therapy-page__intro > *:last-child {
+  margin-bottom: 0;
+}
+
+.art-therapy-page__intro p {
+  margin: 0 0 var(--space-copy);
+}
+
+.art-therapy-page__entries {
+  display: grid;
+  gap: var(--space-section);
+}
+
+.art-therapy-page__entry {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.art-therapy-page__entry.editorial-entry--split {
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.7fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: stretch;
+}
+
+.art-therapy-page__entry.editorial-entry--reverse {
+  grid-template-columns: minmax(320px, 0.7fr) minmax(0, 1.08fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: stretch;
+}
+
+.art-therapy-page__entry .editorial-entry__media {
+  min-height: 420px;
+  height: 100%;
+}
+
+.art-therapy-page__entry .editorial-entry__media img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.art-therapy-page__entry-copy {
+  display: grid;
+  align-content: center;
+  gap: var(--space-copy);
+  max-width: 28rem;
+  padding: clamp(20px, 2vw, 28px) 0;
+}
+
+.art-therapy-page__entry .editorial-entry__title {
+  max-width: 12ch;
+  margin-bottom: 0;
+}
+
+.art-therapy-page__entry .editorial-entry__body {
+  max-width: 27rem;
+}
+
+.art-therapy-page__entry .editorial-entry__body > *:first-child {
+  margin-top: 0;
+}
+
+.art-therapy-page__entry .editorial-entry__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.art-therapy-page__entry .editorial-entry__body p {
+  margin: 0 0 var(--space-copy);
+}

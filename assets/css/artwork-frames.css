@@ -1,0 +1,174 @@
+/* ── Frame selector UI ──────────────────────────────────────────────────── */
+
+.artwork-frame-selector {
+  margin-top: clamp(16px, 2vw, 24px);
+}
+
+.artwork-frame-selector__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.artwork-frame-selector__head .artwork-detail__eyebrow {
+  margin: 0;
+}
+
+.artwork-frame-selector__choices {
+  display: flex;
+  overflow: auto;
+  gap: 8px;
+  padding-top: 1px;
+}
+
+/* ── Frame choice buttons ───────────────────────────────────────────────── */
+
+.artwork-frame-choice {
+  width: 160px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(26, 28, 28, 0.13);
+  background: rgba(255, 255, 255, 0.46);
+  color: var(--az-color-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--az-transition-ui), background var(--az-transition-ui), transform var(--az-transition-ui);
+}
+
+.artwork-frame-choice:hover,
+.artwork-frame-choice.is-active {
+  border-color: rgba(26, 28, 28, 0.46);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.artwork-frame-choice:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Frame choice thumbnail ─────────────────────────────────────────────── */
+/*
+ * Each button shows a live miniature of the frame rendered via border-image.
+ * The border-image-source and border-image-slice are set via inline style in PHP.
+ * border-image-repeat:round is set inline too so corners stay proportional.
+ */
+
+.artwork-frame-choice__thumb {
+  display: block;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent; /* overridden by border-image when set */
+  background-color: rgba(200, 188, 172, 0.25); /* visible inner area */
+  box-sizing: border-box;
+  margin: 0 8px;
+}
+
+.artwork-frame-choice__thumb--none {
+  border-width: 0;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(26, 28, 28, 0.1) 0px,
+    rgba(26, 28, 28, 0.1) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+}
+
+.artwork-frame-choice__label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  max-height: calc(2 * 1.3em + 2px);
+  font-family: var(--az-font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.artwork-frame-choice__meta {
+  font-weight: 400;
+  opacity: 0.65;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── Thickness slider ───────────────────────────────────────────────────── */
+
+.artwork-frame-selector__thickness {
+  margin-top: 14px;
+}
+
+.artwork-frame-selector__thickness-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--az-font-sans);
+  font-size: var(--type-meta-size);
+  font-weight: 600;
+  letter-spacing: var(--type-meta-track);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--az-color-muted);
+  margin-bottom: 6px;
+}
+
+.artwork-frame-selector__thickness-value {
+  font-weight: 400;
+}
+
+.artwork-frame-selector__thickness-input {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+
+.artwork-frame-selector__thickness-input:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+/* ── Frame wrapper ──────────────────────────────────────────────────────── */
+
+.artwork-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+}
+
+/* ── Active frame: border-image and border-width are set by JS ──────────── */
+
+/* ── Interior mockup: sizing stays on the wrapper ──────────────────────── */
+
+.interior-mockup__artwork-frame {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: calc((var(--artwork-render-width) / var(--slot-width)) * 100%);
+  height: calc((var(--artwork-render-height) / var(--slot-height)) * 100%);
+  max-width: none;
+  max-height: none;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+
+.interior-mockup__artwork-frame.is-framed {
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.interior-mockup__artwork-frame > .interior-mockup__artwork {
+  width: 100% !important;
+  height: 100% !important;
+}
