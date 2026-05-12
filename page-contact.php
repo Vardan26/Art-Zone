@@ -27,22 +27,22 @@ $socials    = array_filter(
         array(
             'label' => __( 'Instagram', 'art-zone-blank' ),
             'url'   => art_zone_blank_mod( 'contact_social_instagram_url', '' ),
-            'icon'  => 'fa-brands fa-instagram',
+            'icon'  => 'instagram',
         ),
         array(
             'label' => __( 'Facebook', 'art-zone-blank' ),
             'url'   => art_zone_blank_mod( 'contact_social_facebook_url', '' ),
-            'icon'  => 'fa-brands fa-facebook-f',
+            'icon'  => 'facebook',
         ),
         array(
             'label' => __( 'YouTube', 'art-zone-blank' ),
             'url'   => art_zone_blank_mod( 'contact_social_youtube_url', '' ),
-            'icon'  => 'fa-brands fa-youtube',
+            'icon'  => 'youtube',
         ),
         array(
             'label' => __( 'WhatsApp', 'art-zone-blank' ),
             'url'   => art_zone_blank_mod( 'contact_social_whatsapp_url', '' ),
-            'icon'  => 'fa-brands fa-whatsapp',
+            'icon'  => 'whatsapp',
         ),
     ),
     function ( $item ) {
@@ -75,16 +75,16 @@ $map_markers = array_values(
                     <?php endif; ?>
                     <div class="contact-page__details-group">
                         <div class="contact-page__detail-card">
-                            <p class="contact-page__detail-label"><i class="fa-solid fa-phone" aria-hidden="true"></i><span><?php esc_html_e( 'Phone', 'art-zone-blank' ); ?></span></p>
+                            <p class="contact-page__detail-label"><?php echo art_zone_blank_icon( 'phone' ); ?><span><?php esc_html_e( 'Phone', 'art-zone-blank' ); ?></span></p>
                             <a class="contact-page__detail-value" href="<?php echo esc_url( 'tel:' . preg_replace( '/[^\d+]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
                         </div>
                         <div class="contact-page__detail-card">
-                            <p class="contact-page__detail-label"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span><?php esc_html_e( 'Email', 'art-zone-blank' ); ?></span></p>
+                            <p class="contact-page__detail-label"><?php echo art_zone_blank_icon( 'envelope' ); ?><span><?php esc_html_e( 'Email', 'art-zone-blank' ); ?></span></p>
                             <a class="contact-page__detail-value" href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>"><?php echo esc_html( antispambot( $email ) ); ?></a>
                         </div>
                         <?php foreach ( array( $address_1, $address_2 ) as $address ) : ?>
                             <div class="contact-page__detail-card">
-                                <p class="contact-page__detail-label"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span><?php echo esc_html( $address['label'] ); ?></span></p>
+                                <p class="contact-page__detail-label"><?php echo art_zone_blank_icon( 'location-dot' ); ?><span><?php echo esc_html( $address['label'] ); ?></span></p>
                                 <p class="contact-page__location-text"><?php echo esc_html( $address['text'] ); ?></p>
                             </div>
                         <?php endforeach; ?>
@@ -99,7 +99,7 @@ $map_markers = array_values(
                     <div class="contact-page__social-list contact-page__social-list--band">
                         <?php foreach ( $socials as $social ) : ?>
                             <a class="contact-page__social-link contact-page__social-link--band" href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener noreferrer">
-                                <i class="<?php echo esc_attr( $social['icon'] ); ?>" aria-hidden="true"></i>
+                                <?php echo art_zone_blank_icon( $social['icon'] ); ?>
                                 <span><?php echo esc_html( $social['label'] ); ?></span>
                             </a>
                         <?php endforeach; ?>

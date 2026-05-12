@@ -176,6 +176,10 @@ img {
   margin-bottom: var(--space-block);
 }
 
+.section-heading--simple {
+  margin: 0 0 var(--space-block);
+}
+
 .section-meta {
   margin: 0;
   color: var(--az-color-meta);

@@ -151,6 +151,24 @@
   transform: translateY(-1px);
 }
 
+.site-menu .current-menu-item > a,
+.site-menu .current_page_item > a {
+  color: var(--az-color-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.site-header--home-overlay .site-menu .current-menu-item > a,
+.site-header--home-overlay .site-menu .current_page_item > a {
+  color: #fff;
+}
+
+.site-header--home-overlay.is-scrolled .site-menu .current-menu-item > a,
+.site-header--home-overlay.is-scrolled .site-menu .current_page_item > a {
+  color: var(--az-color-dark);
+}
+
 .site-header__lang {
   display: inline-flex;
   align-items: center;

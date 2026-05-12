@@ -29,6 +29,7 @@ add_action( 'after_setup_theme', function () {
     );
 } );
 
+require_once get_stylesheet_directory() . '/inc/icons.php';
 require_once get_stylesheet_directory() . '/inc/theme-mods.php';
 require_once get_stylesheet_directory() . '/inc/artwork-data.php';
 require_once get_stylesheet_directory() . '/inc/artwork-template-matcher.php';

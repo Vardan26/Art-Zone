@@ -36,16 +36,24 @@
               'fallback_cb'    => function () {
                   $home_url      = art_zone_blank_home_url();
                   $portfolio_url = art_zone_blank_portfolio_url( '#collection' );
-                  $contact_url      = art_zone_blank_contact_url( '#' );
+                  $contact_url   = art_zone_blank_contact_url( '#' );
                   $about_url     = art_zone_blank_about_url( '#artist' );
                   $therapy_url   = art_zone_blank_art_therapy_url( '#contact' );
+                  $is_home       = is_front_page();
+                  $is_portfolio  = art_zone_blank_is_current_page_template( 'page-portfolio.php' ) || is_singular( 'artwork' );
+                  $is_about      = art_zone_blank_is_current_page_template( 'page-about.php' );
+                  $is_therapy    = art_zone_blank_is_current_page_template( 'page-art-therapy.php' );
+                  $is_contact    = art_zone_blank_is_current_page_template( 'page-contact.php' );
+                  $li = function ( $active, $url, $label ) {
+                      $class = $active ? ' class="current_page_item"' : '';
+                      echo '<li' . $class . '><a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a></li>';
+                  };
                   echo '<ul class="site-menu">';
-                  echo '<li><a href="' . esc_url( $home_url ) . '">' . esc_html__( 'Home', 'art-zone-blank' ) . '</a></li>';
-                  echo '<li><a href="' . esc_url( $portfolio_url ) . '">' . esc_html__( 'Portfolio', 'art-zone-blank' ) . '</a></li>';
-                  // echo '<li><a href="' . esc_url( $blog_url ) . '">' . esc_html__( 'Blog', 'art-zone-blank' ) . '</a></li>';
-                  echo '<li><a href="' . esc_url( $about_url ) . '">' . esc_html__( 'About', 'art-zone-blank' ) . '</a></li>';
-                  echo '<li><a href="' . esc_url( $therapy_url ) . '">' . esc_html__( 'Art Therapy', 'art-zone-blank' ) . '</a></li>';
-                  echo '<li><a href="' . esc_url( $contact_url ) . '">' . esc_html__( 'Contacts', 'art-zone-blank' ) . '</a></li>';
+                  $li( $is_home,      $home_url,      __( 'Home',        'art-zone-blank' ) );
+                  $li( $is_portfolio, $portfolio_url, __( 'Portfolio',   'art-zone-blank' ) );
+                  $li( $is_about,     $about_url,     __( 'About',       'art-zone-blank' ) );
+                  $li( $is_therapy,   $therapy_url,   __( 'Art Therapy', 'art-zone-blank' ) );
+                  $li( $is_contact,   $contact_url,   __( 'Contacts',    'art-zone-blank' ) );
                   echo '</ul>';
               },
           )

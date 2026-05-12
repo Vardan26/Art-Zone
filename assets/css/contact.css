@@ -142,9 +142,10 @@
   width: 100%;
 }
 
-.contact-page__detail-label i {
-  font-size: 0.8rem;
+.contact-page__detail-label svg {
   width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
   color: inherit;
 }
 
@@ -181,9 +182,10 @@
 
 .contact-page__map-pin {
   color: #68677d;
-  font-size: 2.35rem;
-  line-height: 1;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+  width: 2.35rem;
+  height: 2.35rem;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.16));
 }
 
 .contact-page__socials--band {
@@ -227,8 +229,10 @@
   border-right: 0;
 }
 
-.contact-page__social-link--band i {
-  font-size: 1.05rem;
+.contact-page__social-link--band svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
   opacity: 0.78;
 }
 

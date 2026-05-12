@@ -365,6 +365,30 @@ function art_zone_blank_menu_item_route_url( $item, $theme_location = '' ) {
 }
 
 add_filter(
+    'nav_menu_css_class',
+    function ( $classes, $item, $args ) {
+        if ( ! is_singular( 'artwork' ) ) {
+            return $classes;
+        }
+
+        if ( empty( $args->theme_location ) || 'primary' !== $args->theme_location ) {
+            return $classes;
+        }
+
+        $route_url  = art_zone_blank_menu_item_route_url( $item, 'primary' );
+        $portfolio_url = art_zone_blank_portfolio_url();
+
+        if ( is_string( $route_url ) && is_string( $portfolio_url ) && rtrim( $route_url, '/' ) === rtrim( $portfolio_url, '/' ) ) {
+            $classes[] = 'current-menu-item';
+        }
+
+        return $classes;
+    },
+    10,
+    3
+);
+
+add_filter(
     'wp_nav_menu_objects',
     function ( $items, $args ) {
         if ( empty( $args->theme_location ) || ! in_array( $args->theme_location, array( 'primary', 'footer' ), true ) ) {

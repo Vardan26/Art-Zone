@@ -43,7 +43,7 @@ if ( empty( $visuals ) && $fallback_image ) {
                     </audio>
                     <button type="button" class="art-therapy-page__audio-toggle" data-audio-toggle aria-pressed="false" aria-label="<?php esc_attr_e( 'Enable audio', 'art-zone-blank' ); ?>">
                         <span class="art-therapy-page__audio-toggle-icon" aria-hidden="true">
-                            <i class="fa-solid fa-volume-xmark"></i>
+                            <?php echo art_zone_blank_icon( 'volume-xmark' ); ?>
                         </span>
                     </button>
                 <?php endif; ?>

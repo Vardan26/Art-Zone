@@ -101,9 +101,6 @@
   padding: var(--space-block) 0;
 }
 
-.section-heading--simple {
-  margin: 0 0 var(--space-block);
-}
 
 .home-collection-simple__heading {
   max-width: 18rem;

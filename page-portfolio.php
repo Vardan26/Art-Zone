@@ -107,7 +107,7 @@ $count_template  = art_zone_blank_mod( 'portfolio_count_template', __( 'Showing 
                 </div>
                 <div class="gallery-page__header-actions">
                     <button class="gallery-filter-toggle" type="button" aria-expanded="false" aria-controls="gallery-filters-panel" data-filter-toggle>
-                        <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                        <?php echo art_zone_blank_icon( 'sliders' ); ?>
                         <span><?php esc_html_e( 'Filters', 'art-zone-blank' ); ?></span>
                     </button>
                 </div>
@@ -239,10 +239,10 @@ $count_template  = art_zone_blank_mod( 'portfolio_count_template', __( 'Showing 
         <div class="gallery-lightbox__dialog" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Artwork preview', 'art-zone-blank' ); ?>">
             <button type="button" class="gallery-lightbox__close" data-lightbox-close aria-label="<?php esc_attr_e( 'Close preview', 'art-zone-blank' ); ?>">&times;</button>
             <button type="button" class="gallery-lightbox__nav gallery-lightbox__nav--prev" data-lightbox-prev aria-label="<?php esc_attr_e( 'Previous artwork', 'art-zone-blank' ); ?>">
-                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                <?php echo art_zone_blank_icon( 'arrow-left' ); ?>
             </button>
             <button type="button" class="gallery-lightbox__nav gallery-lightbox__nav--next" data-lightbox-next aria-label="<?php esc_attr_e( 'Next artwork', 'art-zone-blank' ); ?>">
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                <?php echo art_zone_blank_icon( 'arrow-right' ); ?>
             </button>
             <div class="gallery-lightbox__media">
                 <img class="gallery-lightbox__image" src="" alt="">
