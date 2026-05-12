@@ -5,7 +5,7 @@
   width: 100%;
   z-index: 20;
   backdrop-filter: blur(16px);
-  background: black;
+  background: var(--az-surface-muted);
   border-bottom: 1px solid rgba(18, 18, 18, 0.06);
 }
 
