@@ -7,21 +7,21 @@ get_header();
 
 $hero_image = art_zone_blank_media_mod_url( 'contact_hero_image_url', '', 'az-hero' );
 $hero_text  = art_zone_blank_mod( 'contact_hero_kicker', __( 'Let’s talk about your next project.', 'art-zone-blank' ) );
-$phone      = art_zone_blank_mod( 'contact_phone', __( '+374 00 000000', 'art-zone-blank' ) );
+$phone      = art_zone_blank_mod( 'contact_phone', '' );
 $email      = art_zone_blank_mod( 'contact_email', __( 'studio@example.com', 'art-zone-blank' ) );
 $address_1  = array(
-    'label' => art_zone_blank_mod( 'contact_address_1_label', __( 'Studio One', 'art-zone-blank' ) ),
-    'text'  => art_zone_blank_mod( 'contact_address_1_text', __( 'Yeghegnadzor, Vayots Dzor, Armenia', 'art-zone-blank' ) ),
-    'lat'   => (float) art_zone_blank_mod( 'contact_address_1_lat', '39.76475' ),
-    'lng'   => (float) art_zone_blank_mod( 'contact_address_1_lng', '45.33222' ),
+    'label' => art_zone_blank_mod( 'contact_address_1_label', __( 'Studio', 'art-zone-blank' ) ),
+    'text'  => art_zone_blank_mod( 'contact_address_1_text', '' ),
+    'lat'   => (float) art_zone_blank_mod( 'contact_address_1_lat', '0' ),
+    'lng'   => (float) art_zone_blank_mod( 'contact_address_1_lng', '0' ),
 );
 $address_2  = array(
-    'label' => art_zone_blank_mod( 'contact_address_2_label', __( 'Studio Two', 'art-zone-blank' ) ),
-    'text'  => art_zone_blank_mod( 'contact_address_2_text', __( 'Yerevan, Armenia', 'art-zone-blank' ) ),
-    'lat'   => (float) art_zone_blank_mod( 'contact_address_2_lat', '39.83467' ),
-    'lng'   => (float) art_zone_blank_mod( 'contact_address_2_lng', '45.66560' ),
+    'label' => art_zone_blank_mod( 'contact_address_2_label', '' ),
+    'text'  => art_zone_blank_mod( 'contact_address_2_text', '' ),
+    'lat'   => (float) art_zone_blank_mod( 'contact_address_2_lat', '0' ),
+    'lng'   => (float) art_zone_blank_mod( 'contact_address_2_lng', '0' ),
 );
-$map_url     = art_zone_blank_mod( 'contact_map_url', 'https://maps.google.com/maps?q=Armenia&t=&z=7&ie=UTF8&iwloc=&output=embed' );
+$map_url     = art_zone_blank_mod( 'contact_map_url', '' );
 $socials    = array_filter(
     array(
         array(

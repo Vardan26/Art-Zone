@@ -16,11 +16,11 @@ $feature_video_url = art_zone_blank_media_mod_url( 'about_feature_video_url', ''
             </div>
             <div class="editorial-hero__panel about-page__intro">
                 <p class="about-page__eyebrow"><?php echo esc_html( art_zone_blank_mod( 'about_eyebrow', __( 'The Artist', 'art-zone-blank' ) ) ); ?></p>
-                <h1 class="about-page__title"><?php echo esc_html( art_zone_blank_mod( 'about_title', __( 'Wild nature, stone paint, and a life rooted in place.', 'art-zone-blank' ) ) ); ?></h1>
+                <h1 class="about-page__title"><?php echo esc_html( art_zone_blank_mod( 'about_title', __( 'A practice rooted in material, place, and observation.', 'art-zone-blank' ) ) ); ?></h1>
                 <div class="about-page__copy">
-                    <p><?php echo esc_html( art_zone_blank_mod( 'about_intro_paragraph_1', __( 'Hayk Shahbazyan lives in Yeghegnadzor, Armenia. After graduating from Terlemezyan Painting College, he returned to his hometown and began building his professional artistic path there.', 'art-zone-blank' ) ) ); ?></p>
-                    <p><?php echo esc_html( art_zone_blank_mod( 'about_intro_paragraph_2', __( 'His work is shaped by a personal technique using stone paints made through his own process. The wild and breathtaking beauty of nature, in all its changing forms, remains a constant presence throughout his paintings.', 'art-zone-blank' ) ) ); ?></p>
-                    <p><?php echo esc_html( art_zone_blank_mod( 'about_intro_paragraph_3', __( 'His work is shaped by a personal technique using stone paints made through his own process. The wild and breathtaking beauty of nature, in all its changing forms, remains a constant presence throughout his paintings.', 'art-zone-blank' ) ) ); ?></p>
+                    <p><?php echo esc_html( art_zone_blank_mod( 'about_intro_paragraph_1', __( 'This artist lives and works from their studio, where daily practice shapes a body of work rooted in close observation of the natural world.', 'art-zone-blank' ) ) ); ?></p>
+                    <p><?php echo esc_html( art_zone_blank_mod( 'about_intro_paragraph_2', __( 'The paintings grow from a sustained attention to materials — their weight, their surface, the way light moves across them over time.', 'art-zone-blank' ) ) ); ?></p>
+                    <p><?php echo esc_html( art_zone_blank_mod( 'about_intro_paragraph_3', __( 'Each work begins in the studio but carries the memory of place: weather, season, and the specific silence of a chosen landscape.', 'art-zone-blank' ) ) ); ?></p>
                 </div>
             </div>
         </div>

@@ -41,7 +41,10 @@
       );
       ?>
     </nav>
-    <p class="site-footer__location"><?php echo esc_html( art_zone_blank_mod( 'footer_location', __( 'Studio - Hudson Valley, NY', 'art-zone-blank' ) ) ); ?></p>
+    <?php $footer_location = art_zone_blank_mod( 'footer_location', '' ); ?>
+    <?php if ( $footer_location ) : ?>
+      <p class="site-footer__location"><?php echo esc_html( $footer_location ); ?></p>
+    <?php endif; ?>
   </div>
 </footer>
 <?php wp_footer(); ?>

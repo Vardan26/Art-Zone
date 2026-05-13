@@ -597,7 +597,7 @@ add_action(
             ),
             'contact_map_url'              => array(
                 'label'   => __( 'Combined Map Embed URL', 'art-zone-blank' ),
-                'default' => 'https://maps.google.com/maps?q=Armenia&t=&z=7&ie=UTF8&iwloc=&output=embed',
+                'default' => '',
                 'type'    => 'url',
             ),
             'contact_social_instagram_url' => array(

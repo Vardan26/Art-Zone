@@ -1,5 +1,5 @@
 <?php
-$artist_name      = art_zone_blank_mod( 'artist_name', __( 'Hayk Shahbazyan', 'art-zone-blank' ) );
+$artist_name      = art_zone_blank_mod( 'artist_name', get_bloginfo( 'name' ) );
 $artist_label     = art_zone_blank_mod( 'artist_label', __( 'The Artist', 'art-zone-blank' ) );
 $artist_bio       = art_zone_blank_mod( 'artist_bio', '' );
 $artist_link_text = art_zone_blank_mod( 'artist_link_text', __( 'Learn more about the journey', 'art-zone-blank' ) );
