@@ -1579,3 +1579,175 @@ add_action(
     },
     31
 );
+
+// ─── Default pages ────────────────────────────────────────────────────────────
+
+add_action(
+    'init',
+    function () {
+        if ( get_option( 'art_zone_blank_seeded_home_page' ) ) {
+            return;
+        }
+
+        // Skip if a static front page is already configured.
+        if ( 'page' === get_option( 'show_on_front' ) && (int) get_option( 'page_on_front' ) ) {
+            update_option( 'art_zone_blank_seeded_home_page', 1 );
+            return;
+        }
+
+        $existing = get_page_by_path( 'home' ) ?: get_page_by_path( 'welcome' );
+
+        if ( $existing instanceof WP_Post ) {
+            $page_id = $existing->ID;
+        } else {
+            $page_id = wp_insert_post(
+                array(
+                    'post_type'    => 'page',
+                    'post_status'  => 'publish',
+                    'post_title'   => __( 'Home', 'art-zone-blank' ),
+                    'post_name'    => 'home',
+                    'post_content' => '',
+                )
+            );
+        }
+
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'show_on_front', 'page' );
+            update_option( 'page_on_front', $page_id );
+        }
+
+        update_option( 'art_zone_blank_seeded_home_page', 1 );
+    },
+    22
+);
+
+add_action(
+    'init',
+    function () {
+        if ( get_option( 'art_zone_blank_seeded_portfolio_page' ) ) {
+            return;
+        }
+
+        $page = get_page_by_path( 'portfolio' ) ?: get_page_by_path( 'gallery' ) ?: get_page_by_path( 'works' );
+
+        if ( ! $page instanceof WP_Post ) {
+            $page_id = wp_insert_post(
+                array(
+                    'post_type'    => 'page',
+                    'post_status'  => 'publish',
+                    'post_title'   => __( 'Portfolio', 'art-zone-blank' ),
+                    'post_name'    => 'portfolio',
+                    'post_content' => '',
+                )
+            );
+
+            if ( ! is_wp_error( $page_id ) && $page_id ) {
+                update_post_meta( $page_id, '_wp_page_template', 'page-portfolio.php' );
+            }
+        } elseif ( 'page-portfolio.php' !== get_page_template_slug( $page->ID ) ) {
+            update_post_meta( $page->ID, '_wp_page_template', 'page-portfolio.php' );
+        }
+
+        update_option( 'art_zone_blank_seeded_portfolio_page', 1 );
+    },
+    23
+);
+
+add_action(
+    'init',
+    function () {
+        if ( get_option( 'art_zone_blank_seeded_about_page' ) ) {
+            return;
+        }
+
+        $page = get_page_by_path( 'about' ) ?: get_page_by_path( 'artist' ) ?: get_page_by_path( 'about-the-artist' );
+
+        if ( ! $page instanceof WP_Post ) {
+            $page_id = wp_insert_post(
+                array(
+                    'post_type'    => 'page',
+                    'post_status'  => 'publish',
+                    'post_title'   => __( 'About', 'art-zone-blank' ),
+                    'post_name'    => 'about',
+                    'post_content' => '',
+                )
+            );
+
+            if ( ! is_wp_error( $page_id ) && $page_id ) {
+                update_post_meta( $page_id, '_wp_page_template', 'page-about.php' );
+            }
+        } elseif ( 'page-about.php' !== get_page_template_slug( $page->ID ) ) {
+            update_post_meta( $page->ID, '_wp_page_template', 'page-about.php' );
+        }
+
+        update_option( 'art_zone_blank_seeded_about_page', 1 );
+    },
+    23
+);
+
+// ─── Default primary nav menu ─────────────────────────────────────────────────
+
+add_action(
+    'init',
+    function () {
+        if ( get_option( 'art_zone_blank_seeded_primary_menu' ) ) {
+            return;
+        }
+
+        // Skip if a menu is already assigned to the primary location.
+        $locations = get_theme_mod( 'nav_menu_locations', array() );
+
+        if ( ! empty( $locations['primary'] ) && get_term( (int) $locations['primary'], 'nav_menu' ) instanceof WP_Term ) {
+            update_option( 'art_zone_blank_seeded_primary_menu', 1 );
+            return;
+        }
+
+        $menu_id = wp_create_nav_menu( __( 'Primary Menu', 'art-zone-blank' ) );
+
+        if ( is_wp_error( $menu_id ) ) {
+            return;
+        }
+
+        $front_page_id = (int) get_option( 'page_on_front' );
+        $portfolio_id  = art_zone_blank_find_page_id_by_paths( array( 'portfolio', 'gallery', 'works' ) )
+                         ?: art_zone_blank_find_page_id_by_template( 'page-portfolio.php' );
+        $about_id      = art_zone_blank_find_page_id_by_paths( array( 'about', 'artist', 'about-the-artist' ) )
+                         ?: art_zone_blank_find_page_id_by_template( 'page-about.php' );
+        $contact_id    = art_zone_blank_find_page_id_by_paths( array( 'contact', 'contact-us', 'contacts' ) )
+                         ?: art_zone_blank_find_page_id_by_template( 'page-contact.php' );
+
+        $items = array(
+            array( 'title' => __( 'Home',      'art-zone-blank' ), 'id' => $front_page_id ),
+            array( 'title' => __( 'Portfolio', 'art-zone-blank' ), 'id' => $portfolio_id ),
+            array( 'title' => __( 'About',     'art-zone-blank' ), 'id' => $about_id ),
+            array( 'title' => __( 'Contact',   'art-zone-blank' ), 'id' => $contact_id ),
+        );
+
+        $order = 1;
+
+        foreach ( $items as $item ) {
+            if ( ! $item['id'] ) {
+                continue;
+            }
+
+            wp_update_nav_menu_item(
+                $menu_id,
+                0,
+                array(
+                    'menu-item-title'     => $item['title'],
+                    'menu-item-object'    => 'page',
+                    'menu-item-object-id' => $item['id'],
+                    'menu-item-type'      => 'post_type',
+                    'menu-item-status'    => 'publish',
+                    'menu-item-position'  => $order++,
+                )
+            );
+        }
+
+        $locations['primary'] = $menu_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+
+        update_option( 'art_zone_blank_seeded_primary_menu', 1 );
+    },
+    36
+);

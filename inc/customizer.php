@@ -123,11 +123,11 @@ add_action(
         $settings = array(
             'hero_title'       => array(
                 'label'   => __( 'Hero Title', 'art-zone-blank' ),
-                'default' => __( 'Elias Vance', 'art-zone-blank' ),
+                'default' => '',
             ),
             'hero_kicker'      => array(
                 'label'   => __( 'Hero Kicker', 'art-zone-blank' ),
-                'default' => __( 'Contemporary painter focusing on light and texture', 'art-zone-blank' ),
+                'default' => __( 'Contemporary artist', 'art-zone-blank' ),
             ),
             'hero_button_text' => array(
                 'label'   => __( 'Hero Button Text', 'art-zone-blank' ),
@@ -158,11 +158,11 @@ add_action(
             ),
             'collection_years' => array(
                 'label'   => __( 'Collection Years', 'art-zone-blank' ),
-                'default' => __( '2022 - 2024', 'art-zone-blank' ),
+                'default' => '',
             ),
             'artist_name'      => array(
                 'label'   => __( 'Artist Name', 'art-zone-blank' ),
-                'default' => __( 'Elias Vance', 'art-zone-blank' ),
+                'default' => '',
             ),
             'artist_label'     => array(
                 'label'   => __( 'Artist Eyebrow', 'art-zone-blank' ),
@@ -170,7 +170,7 @@ add_action(
             ),
             'artist_bio'       => array(
                 'label'   => __( 'Artist Bio', 'art-zone-blank' ),
-                'default' => __( 'Based in a sun-drenched studio in the Hudson Valley, Elias Vance explores the boundary between physical texture and perceived atmosphere. His work is held in private collections across Europe and North America, celebrated for its quiet intensity and material use of light.', 'art-zone-blank' ),
+                'default' => __( 'This artist\'s practice is rooted in a sustained engagement with materials, place, and the painted surface. Their work is held in private collections and has been exhibited internationally.', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'artist_image_url' => array(
@@ -223,7 +223,7 @@ add_action(
             ),
             'cta_text'         => array(
                 'label'   => __( 'CTA Text', 'art-zone-blank' ),
-                'default' => __( 'Elias accepts a limited number of private and commercial commissions each year. Start a conversation about your custom piece.', 'art-zone-blank' ),
+                'default' => __( 'I accept a limited number of private and commercial commissions each year. Start a conversation about your next piece.', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'cta_button_text'  => array(
@@ -236,7 +236,7 @@ add_action(
             ),
             'footer_location'  => array(
                 'label'   => __( 'Footer Location', 'art-zone-blank' ),
-                'default' => __( 'Studio - Hudson Valley, NY', 'art-zone-blank' ),
+                'default' => '',
             ),
         );
 
@@ -304,21 +304,21 @@ add_action(
             ),
             'about_title'             => array(
                 'label'   => __( 'Hero Title', 'art-zone-blank' ),
-                'default' => __( 'Wild nature, stone paint, and a life rooted in place.', 'art-zone-blank' ),
+                'default' => __( 'A practice rooted in material, place, and observation.', 'art-zone-blank' ),
             ),
             'about_intro_paragraph_1' => array(
                 'label'   => __( 'Hero Paragraph 1', 'art-zone-blank' ),
-                'default' => __( 'Hayk Shahbazyan lives in Yeghegnadzor, Armenia. After graduating from Terlemezyan Painting College, he returned to his hometown and began building his professional artistic path there.', 'art-zone-blank' ),
+                'default' => __( 'This artist lives and works from their studio, where daily practice shapes a body of work rooted in close observation of the natural world.', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'about_intro_paragraph_2' => array(
                 'label'   => __( 'Hero Paragraph 2', 'art-zone-blank' ),
-                'default' => __( 'His work is shaped by a personal technique using stone paints made through his own process. The wild and breathtaking beauty of nature, in all its changing forms, remains a constant presence throughout his paintings.', 'art-zone-blank' ),
+                'default' => __( 'The paintings grow from a sustained attention to materials — their weight, their surface, the way light moves across them over time.', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'about_intro_paragraph_3' => array(
                 'label'   => __( 'Hero Paragraph 3', 'art-zone-blank' ),
-                'default' => __( 'His work is shaped by a personal technique using stone paints made through his own process. The wild and breathtaking beauty of nature, in all its changing forms, remains a constant presence throughout his paintings.', 'art-zone-blank' ),
+                'default' => __( 'Each work begins in the studio but carries the memory of place: weather, season, and the specific silence of a chosen landscape.', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'about_philosophy_title'  => array(
@@ -327,7 +327,7 @@ add_action(
             ),
             'about_philosophy_quote'  => array(
                 'label'   => __( 'Philosophy Quote', 'art-zone-blank' ),
-                'default' => __( '"I work with stone paints made through my own unique technology, searching for a language that can hold the power of nature on canvas."', 'art-zone-blank' ),
+                'default' => __( '"Paint is not a medium — it is a material with its own logic. My work begins when I stop trying to control it."', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'about_detail_caption'    => array(
@@ -555,7 +555,7 @@ add_action(
             ),
             'contact_phone'                => array(
                 'label'   => __( 'Phone', 'art-zone-blank' ),
-                'default' => __( '+374 00 000000', 'art-zone-blank' ),
+                'default' => '',
             ),
             'contact_email'                => array(
                 'label'   => __( 'Email', 'art-zone-blank' ),
@@ -567,16 +567,16 @@ add_action(
             ),
             'contact_address_1_text'       => array(
                 'label'   => __( 'Address 1', 'art-zone-blank' ),
-                'default' => __( 'Yeghegnadzor, Vayots Dzor, Armenia', 'art-zone-blank' ),
+                'default' => '',
                 'type'    => 'textarea',
             ),
             'contact_address_1_lat'        => array(
                 'label'   => __( 'Address 1 Latitude', 'art-zone-blank' ),
-                'default' => '39.7639',
+                'default' => '0',
             ),
             'contact_address_1_lng'        => array(
                 'label'   => __( 'Address 1 Longitude', 'art-zone-blank' ),
-                'default' => '45.3324',
+                'default' => '0',
             ),
             'contact_address_2_label'      => array(
                 'label'   => __( 'Address 2 Label', 'art-zone-blank' ),
@@ -584,16 +584,16 @@ add_action(
             ),
             'contact_address_2_text'       => array(
                 'label'   => __( 'Address 2', 'art-zone-blank' ),
-                'default' => __( 'Yerevan, Armenia', 'art-zone-blank' ),
+                'default' => '',
                 'type'    => 'textarea',
             ),
             'contact_address_2_lat'        => array(
                 'label'   => __( 'Address 2 Latitude', 'art-zone-blank' ),
-                'default' => '40.1792',
+                'default' => '0',
             ),
             'contact_address_2_lng'        => array(
                 'label'   => __( 'Address 2 Longitude', 'art-zone-blank' ),
-                'default' => '44.4991',
+                'default' => '0',
             ),
             'contact_map_url'              => array(
                 'label'   => __( 'Combined Map Embed URL', 'art-zone-blank' ),
