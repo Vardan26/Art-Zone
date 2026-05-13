@@ -39,5 +39,6 @@ require_once get_stylesheet_directory() . '/inc/navigation.php';
 require_once get_stylesheet_directory() . '/inc/assets.php';
 require_once get_stylesheet_directory() . '/inc/content-types.php';
 require_once get_stylesheet_directory() . '/inc/customizer.php';
+require_once get_stylesheet_directory() . '/inc/dynamic-styles.php';
 require_once get_stylesheet_directory() . '/inc/seed.php';
 require_once get_stylesheet_directory() . '/inc/admin-metaboxes.php';

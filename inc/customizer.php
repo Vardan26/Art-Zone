@@ -36,6 +36,51 @@ add_action(
         }
 
         $wp_customize->add_section(
+            'art_zone_blank_colors',
+            array(
+                'title'    => __( 'Brand Colors', 'art-zone-blank' ),
+                'priority' => 25,
+            )
+        );
+
+        $color_settings = array(
+            'brand_color_bg'   => array(
+                'label'   => __( 'Background Color', 'art-zone-blank' ),
+                'default' => '',
+            ),
+            'brand_color_text' => array(
+                'label'   => __( 'Text Color', 'art-zone-blank' ),
+                'default' => '',
+            ),
+            'brand_color_dark' => array(
+                'label'   => __( 'Accent / Button Color', 'art-zone-blank' ),
+                'default' => '',
+            ),
+        );
+
+        foreach ( $color_settings as $setting_id => $config ) {
+            $wp_customize->add_setting(
+                'art_zone_blank_' . $setting_id,
+                array(
+                    'default'           => $config['default'],
+                    'sanitize_callback' => 'sanitize_hex_color',
+                    'transport'         => 'postMessage',
+                )
+            );
+
+            $wp_customize->add_control(
+                new WP_Customize_Color_Control(
+                    $wp_customize,
+                    'art_zone_blank_' . $setting_id,
+                    array(
+                        'label'   => $config['label'],
+                        'section' => 'art_zone_blank_colors',
+                    )
+                )
+            );
+        }
+
+        $wp_customize->add_section(
             'art_zone_blank_home',
             array(
                 'title'    => __( 'Homepage', 'art-zone-blank' ),
