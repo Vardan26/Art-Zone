@@ -5,14 +5,17 @@ Template Name: About Page
 
 get_header();
 
-$studio_items = art_zone_blank_get_studio_items();
+$studio_items      = art_zone_blank_get_studio_items();
 $feature_video_url = art_zone_blank_media_mod_url( 'about_feature_video_url', '' );
+$placeholder_uri    = get_template_directory_uri() . '/assets/placeholders';
+$portrait_placeholder = $placeholder_uri . '/portrait.jpg';
+$detail_placeholder   = $placeholder_uri . '/detail.jpg';
 ?>
 <main id="primary" class="site-main about-page">
     <section class="about-page__hero section-shell">
         <div class="editorial-hero editorial-hero--viewport about-page__hero-grid">
             <div class="editorial-hero__media about-page__portrait-wrap">
-                    <img src="<?php echo esc_url( art_zone_blank_media_mod_url( 'about_portrait_image_url', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMz8rttBQTAz-Qu50Kd6EMJGdz4BF2q7uSQKoKmWAw0AcSyqwfEO5S7hN1P8kTz2OSESRTs7we05xCWcG82YSF8fRRX3v4cFiQVl6vXNu1ROBzbzYZGMmJWoRTzLKqNGckqkq9GffKWiXjQ6PCt7BDPAClxTO40jodtzmFbdHsUN0ugZJugxKwa2XoH6KwfU4Bow96ixqpjFaKTQQitgYbbdcsFix6YpzQsnzVuvWskFJ4dWR3NbkZ00_7fiEWFvx955eYKKcMkUs', 'az-editorial' ) ); ?>" alt="<?php esc_attr_e( 'Artist in studio', 'art-zone-blank' ); ?>" fetchpriority="high" decoding="async">
+                    <img src="<?php echo esc_url( art_zone_blank_media_mod_url( 'about_portrait_image_url', $portrait_placeholder, 'az-editorial' ) ); ?>" alt="<?php esc_attr_e( 'Artist in studio', 'art-zone-blank' ); ?>" fetchpriority="high" decoding="async">
             </div>
             <div class="editorial-hero__panel about-page__intro">
                 <p class="about-page__eyebrow"><?php echo esc_html( art_zone_blank_mod( 'about_eyebrow', __( 'The Artist', 'art-zone-blank' ) ) ); ?></p>
@@ -31,18 +34,19 @@ $feature_video_url = art_zone_blank_media_mod_url( 'about_feature_video_url', ''
             <div>
                 <h2 class="about-page__subhead about-page__subhead--italic"><?php echo esc_html( art_zone_blank_mod( 'about_philosophy_title', __( 'The Philosophy', 'art-zone-blank' ) ) ); ?></h2>
                 <blockquote class="about-page__quote">
-                    <?php echo esc_html( art_zone_blank_mod( 'about_philosophy_quote', __( '"I work with stone paints made through my own unique technology, searching for a language that can hold the power of nature on canvas."', 'art-zone-blank' ) ) ); ?>
+                    <?php echo esc_html( art_zone_blank_mod( 'about_philosophy_quote', __( '"Paint is not a medium — it is a material with its own logic. My work begins when I stop trying to control it."', 'art-zone-blank' ) ) ); ?>
                 </blockquote>
             </div>
             <div class="about-page__detail">
                 <div class="about-page__detail-media">
-                    <img loading="lazy" decoding="async" src="<?php echo esc_url( art_zone_blank_media_mod_url( 'about_detail_image_url', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBj7dlP0cvdY6Pc-YILi0Ra4oaOt1Q9SVVYRf_Z3MOYcsRmjzUxutcAbofADKjetO1F7MEDokRzE5i7KFVDcl5NS3ANcuBsjcTI0FrDHr69vSJ69EkitIN33vYHxmf_4C1v22UrSvXwDIDaSigYwf4tp9weDagVGeliin6IwqMyA4-CmGZCgHxUddi9yHnUbMlol0BKQCbyPIShL7pkV99qY093wweRUHKcNUnvQunk2nUcVfemIvdzly98Ur9CwQ_O9LUES3hnwbA', 'az-editorial' ) ); ?>" alt="<?php esc_attr_e( 'Studio detail', 'art-zone-blank' ); ?>">
+                    <img loading="lazy" decoding="async" src="<?php echo esc_url( art_zone_blank_media_mod_url( 'about_detail_image_url', $detail_placeholder, 'az-editorial' ) ); ?>" alt="<?php esc_attr_e( 'Studio detail', 'art-zone-blank' ); ?>">
                 </div>
-                <p class="about-page__detail-caption"><?php echo esc_html( art_zone_blank_mod( 'about_detail_caption', __( 'Studio Detail: Stone Paint Process and Surface Work', 'art-zone-blank' ) ) ); ?></p>
+                <p class="about-page__detail-caption"><?php echo esc_html( art_zone_blank_mod( 'about_detail_caption', __( 'Studio detail — surface, material, process.', 'art-zone-blank' ) ) ); ?></p>
             </div>
         </div>
     </section>
 
+    <?php if ( ! empty( $studio_items ) ) : ?>
     <section class="about-page__studio section-shell">
         <div class="about-page__studio-head section-heading section-heading--simple">
             <div>
@@ -80,6 +84,7 @@ $feature_video_url = art_zone_blank_media_mod_url( 'about_feature_video_url', ''
             <?php endforeach; ?>
         </div>
     </section>
+    <?php endif; ?>
 </main>
 <?php
 get_footer();

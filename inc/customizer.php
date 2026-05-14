@@ -139,7 +139,7 @@ add_action(
             ),
             'hero_image_url'   => array(
                 'label'   => __( 'Hero Image', 'art-zone-blank' ),
-                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuApq_b5Wl9XMfW2vDe5FXVEeDJB290fFMmKvao1aZ927tUUQTpolEnxssWE8AJapm2xDSM62w1HaKvjfi_uDX0PmP3ioNkcae5FIBv4w60qgxfkElaU0NrLO6Ap5qKRr3RF2hQlP8Xx10cegMA4PNG-Gdn2Ix5QX17ok69Wi6vK5ap3a8KyXNbfA0Wf-9zGaKU0BnOUOK2JZ1o0KNcDs8TT5WxlJSjlus9tsX8jkdNLlYRamC3u3giQxL5DCLM2fWHOaG07lLWDevU',
+                'default' => '',
                 'type'    => 'image',
             ),
             'hero_video_url'      => array(
@@ -175,7 +175,7 @@ add_action(
             ),
             'artist_image_url' => array(
                 'label'   => __( 'Artist Image', 'art-zone-blank' ),
-                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuDP0SXCIu4ai7BJKVbdE7ksJceLBMhZ0FXTrOl9maIalnzaml4LBCYIvWvSuFFUMyozvtn_1jMZHEcDUIAq8PzMuhjGPOCgOF1ytWjPLv2nNJvLWh-NoQMTuyQbofFnv92X7GF_1i_Iu6ANv9EeZ9Osw8fuVuQFwxkPldrTRStOfar0-rwdMd8tp9h-zEfbZuI14S86Hd9vy1VHyG0aGrxw9fETNk0ll5d1yHYhop0GOgkcgsJFaAUufcpVZwiUzXVo4uGv2xrdLRg',
+                'default' => '',
                 'type'    => 'image',
             ),
             'artist_link_text' => array(
@@ -349,12 +349,12 @@ add_action(
             ),
             'about_portrait_image_url' => array(
                 'label'   => __( 'Portrait Image', 'art-zone-blank' ),
-                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuAMz8rttBQTAz-Qu50Kd6EMJGdz4BF2q7uSQKoKmWAw0AcSyqwfEO5S7hN1P8kTz2OSESRTs7we05xCWcG82YSF8fRRX3v4cFiQVl6vXNu1ROBzbzYZGMmJWoRTzLKqNGckqkq9GffKWiXjQ6PCt7BDPAClxTO40jodtzmFbdHsUN0ugZJugxKwa2XoH6KwfU4Bow96ixqpjFaKTQQitgYbbdcsFix6YpzQsnzVuvWskFJ4dWR3NbkZ00_7fiEWFvx955eYKKcMkUs',
+                'default' => '',
                 'type'    => 'image',
             ),
             'about_detail_image_url' => array(
                 'label'   => __( 'Detail Image', 'art-zone-blank' ),
-                'default' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBj7dlP0cvdY6Pc-YILi0Ra4oaOt1Q9SVVYRf_Z3MOYcsRmjzUxutcAbofADKjetO1F7MEDokRzE5i7KFVDcl5NS3ANcuBsjcTI0FrDHr69vSJ69EkitIN33vYHxmf_4C1v22UrSvXwDIDaSigYwf4tp9weDagVGeliin6IwqMyA4-CmGZCgHxUddi9yHnUbMlol0BKQCbyPIShL7pkV99qY093wweRUHKcNUnvQunk2nUcVfemIvdzly98Ur9CwQ_O9LUES3hnwbA',
+                'default' => '',
                 'type'    => 'image',
             ),
             'about_feature_video_url' => array(
@@ -555,7 +555,7 @@ add_action(
             ),
             'contact_phone'                => array(
                 'label'   => __( 'Phone', 'art-zone-blank' ),
-                'default' => '',
+                'default' => __( '+374 10 123 456', 'art-zone-blank' ),
             ),
             'contact_email'                => array(
                 'label'   => __( 'Email', 'art-zone-blank' ),
@@ -567,7 +567,7 @@ add_action(
             ),
             'contact_address_1_text'       => array(
                 'label'   => __( 'Address 1', 'art-zone-blank' ),
-                'default' => '',
+                'default' => __( '15 Abovyan St, Yerevan 0001, Armenia', 'art-zone-blank' ),
                 'type'    => 'textarea',
             ),
             'contact_address_1_lat'        => array(

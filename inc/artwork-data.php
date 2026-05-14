@@ -453,7 +453,8 @@ function art_zone_blank_get_artwork_image( $post_id, $size = 'az-artwork-detail'
         return $image;
     }
 
-    return '';
+    // Relative path — resolve against the theme directory.
+    return get_template_directory_uri() . '/' . ltrim( $image, '/' );
 }
 
 function art_zone_blank_get_artwork_media_dimensions( $post_id ) {

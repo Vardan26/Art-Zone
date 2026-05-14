@@ -1580,6 +1580,95 @@ add_action(
     31
 );
 
+// ─── Placeholder artworks ─────────────────────────────────────────────────────
+
+add_action(
+    'init',
+    function () {
+        $artwork_count = wp_count_posts( 'artwork' );
+
+        if ( $artwork_count && ! empty( $artwork_count->publish ) ) {
+            return;
+        }
+
+        $placeholder_base = 'assets/placeholders/';
+
+        $artworks = array(
+            array(
+                'title'          => __( 'Untitled Study I', 'art-zone-blank' ),
+                'size'           => 'feature',
+                'category'       => 'landscape',
+                'image'          => $placeholder_base . 'artwork-1.png',
+                'framing_status' => 'no_frame',
+                'width_cm'       => 261,
+                'height_cm'      => 230,
+            ),
+            array(
+                'title'     => __( 'Untitled Study II', 'art-zone-blank' ),
+                'size'      => 'tall',
+                'category'  => 'portrait',
+                'image'     => $placeholder_base . 'artwork-2.jpg',
+                'width_cm'  => 73.5,
+                'height_cm' => 49.2,
+            ),
+            array(
+                'title'     => __( 'Untitled Study III', 'art-zone-blank' ),
+                'size'      => 'side',
+                'category'  => 'abstract',
+                'image'     => $placeholder_base . 'artwork-3.jpg',
+                'width_cm'  => 30.7,
+                'height_cm' => 30.4,
+            ),
+            array(
+                'title'     => __( 'Untitled Study IV', 'art-zone-blank' ),
+                'size'      => 'offset',
+                'category'  => 'figurative',
+                'image'     => $placeholder_base . 'artwork-4.jpg',
+                'width_cm'  => 102,
+                'height_cm' => 50,
+            ),
+            array(
+                'title'     => __( 'Untitled Study V', 'art-zone-blank' ),
+                'size'      => 'small',
+                'category'  => 'nature',
+                'image'     => $placeholder_base . 'artwork-5.jpg',
+                'width_cm'  => 108.5,
+                'height_cm' => 145,
+            ),
+        );
+
+        foreach ( $artworks as $index => $artwork ) {
+            $post_id = wp_insert_post(
+                array(
+                    'post_type'    => 'artwork',
+                    'post_status'  => 'publish',
+                    'post_title'   => $artwork['title'],
+                    'post_content' => '',
+                    'menu_order'   => $index,
+                )
+            );
+
+            if ( is_wp_error( $post_id ) || ! $post_id ) {
+                continue;
+            }
+
+            update_post_meta( $post_id, 'artwork_gallery_size', $artwork['size'] );
+            update_post_meta( $post_id, 'artwork_external_image', $artwork['image'] );
+            update_post_meta( $post_id, 'artwork_framing_status', ! empty( $artwork['framing_status'] ) ? $artwork['framing_status'] : 'framing_available' );
+            if ( ! empty( $artwork['width_cm'] ) ) {
+                update_post_meta( $post_id, 'artwork_width_cm', (float) $artwork['width_cm'] );
+            }
+            if ( ! empty( $artwork['height_cm'] ) ) {
+                update_post_meta( $post_id, 'artwork_height_cm', (float) $artwork['height_cm'] );
+            }
+            wp_set_object_terms( $post_id, array( 'painting' ), 'artwork_type' );
+            wp_set_object_terms( $post_id, array( $artwork['category'] ), 'artwork_category' );
+        }
+
+    },
+    19
+);
+
 // ─── Default pages ────────────────────────────────────────────────────────────
 
 add_action(

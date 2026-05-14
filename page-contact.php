@@ -5,15 +5,15 @@ Template Name: Contact Page
 
 get_header();
 
-$hero_image = art_zone_blank_media_mod_url( 'contact_hero_image_url', '', 'az-hero' );
-$hero_text  = art_zone_blank_mod( 'contact_hero_kicker', __( 'Let’s talk about your next project.', 'art-zone-blank' ) );
-$phone      = art_zone_blank_mod( 'contact_phone', '' );
+$hero_image = art_zone_blank_media_mod_url( 'contact_hero_image_url', 'assets/placeholders/detail.jpg', 'az-hero' );
+$hero_text  = art_zone_blank_mod( 'contact_hero_kicker', __( 'Let’s talk about my next project.', 'art-zone-blank' ) );
+$phone      = art_zone_blank_mod( 'contact_phone', __( '+374 10 123 456', 'art-zone-blank' ) );
 $email      = art_zone_blank_mod( 'contact_email', __( 'studio@example.com', 'art-zone-blank' ) );
 $address_1  = array(
     'label' => art_zone_blank_mod( 'contact_address_1_label', __( 'Studio', 'art-zone-blank' ) ),
-    'text'  => art_zone_blank_mod( 'contact_address_1_text', '' ),
-    'lat'   => (float) art_zone_blank_mod( 'contact_address_1_lat', '0' ),
-    'lng'   => (float) art_zone_blank_mod( 'contact_address_1_lng', '0' ),
+    'text'  => art_zone_blank_mod( 'contact_address_1_text', __( '15 Abovyan St, Yerevan 0001, Armenia', 'art-zone-blank' ) ),
+    'lat'   => (float) art_zone_blank_mod( 'contact_address_1_lat', '40.1824244411345' ),
+    'lng'   => (float) art_zone_blank_mod( 'contact_address_1_lng', '44.517204082032904' ),
 );
 $address_2  = array(
     'label' => art_zone_blank_mod( 'contact_address_2_label', '' ),
@@ -83,10 +83,12 @@ $map_markers = array_values(
                             <a class="contact-page__detail-value" href="<?php echo esc_url( 'mailto:' . antispambot( $email ) ); ?>"><?php echo esc_html( antispambot( $email ) ); ?></a>
                         </div>
                         <?php foreach ( array( $address_1, $address_2 ) as $address ) : ?>
-                            <div class="contact-page__detail-card">
-                                <p class="contact-page__detail-label"><?php echo art_zone_blank_icon( 'location-dot' ); ?><span><?php echo esc_html( $address['label'] ); ?></span></p>
-                                <p class="contact-page__location-text"><?php echo esc_html( $address['text'] ); ?></p>
-                            </div>
+                            <?php if ( ! empty( $address['text'] ) ) : ?>
+                                <div class="contact-page__detail-card">
+                                    <p class="contact-page__detail-label"><?php echo art_zone_blank_icon( 'location-dot' ); ?><span><?php echo esc_html( $address['label'] ); ?></span></p>
+                                    <p class="contact-page__location-text"><?php echo esc_html( $address['text'] ); ?></p>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>

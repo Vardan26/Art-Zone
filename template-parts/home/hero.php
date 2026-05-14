@@ -3,7 +3,7 @@ $hero_title            = art_zone_blank_mod( 'hero_title', get_bloginfo( 'name' 
 $hero_kicker           = art_zone_blank_mod( 'hero_kicker', get_bloginfo( 'description' ) );
 $hero_button_text      = art_zone_blank_mod( 'hero_button_text', '' );
 $hero_button_url       = art_zone_blank_mod( 'hero_button_url', '' );
-$hero_image_url        = art_zone_blank_media_mod_url( 'hero_image_url', '', 'az-hero' );
+$hero_image_url        = art_zone_blank_media_mod_url( 'hero_image_url', get_template_directory_uri() . '/assets/placeholders/hero.jpg', 'az-hero' );
 $hero_video_url        = art_zone_blank_media_mod_url( 'hero_video_url', '' );
 $hero_video_url_webm   = art_zone_blank_media_mod_url( 'hero_video_url_webm', '' );
 ?>

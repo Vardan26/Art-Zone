@@ -4,7 +4,7 @@ $artist_label     = art_zone_blank_mod( 'artist_label', __( 'The Artist', 'art-z
 $artist_bio       = art_zone_blank_mod( 'artist_bio', '' );
 $artist_link_text = art_zone_blank_mod( 'artist_link_text', __( 'Learn more about the journey', 'art-zone-blank' ) );
 $artist_link_url  = art_zone_blank_mod( 'artist_link_url', '' );
-$artist_image_url = art_zone_blank_media_mod_url( 'artist_image_url', '', 'az-editorial' );
+$artist_image_url = art_zone_blank_media_mod_url( 'artist_image_url', get_template_directory_uri() . '/assets/placeholders/portrait.jpg', 'az-editorial' );
 
 if ( '' === trim( (string) $artist_link_url ) || in_array( $artist_link_url, array( '#', '#artist', '/#artist' ), true ) ) {
     $artist_link_url = art_zone_blank_about_url( '#artist' );
